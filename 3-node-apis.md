@@ -25,4 +25,6 @@ node ./code/3/6-path.js
 
 node ./code/3/6-fs-rw.js
 
+node ./code/3/7-child-process.js
+
 ```

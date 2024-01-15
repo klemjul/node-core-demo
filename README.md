@@ -18,13 +18,8 @@
 4. buffers
 5. streams
 6. path / file system
-7. child process (optionnal) TODO:
-8. cancelling asynchronous operation (optionnal) TODO:
-9. network (optionnal) TODO:
-
-## Node.js certifications
-
-TODO:
+7. child process (optionnal)
+8. network (optionnal) TODO:
 
 ## SOURCES
 
