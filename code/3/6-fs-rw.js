@@ -21,37 +21,13 @@ const {
 } = require('fs/promises')
 const { Transform } = require('stream')
 
-const fileToUpperUsingStream = (inputPath, outputPath) => {
-  const createUppercaseStream = () => {
-    return new Transform({
-      transform(chunk, enc, next) {
-        const uppercased = chunk.toString().toUpperCase()
-        next(null, uppercased)
-      },
-    })
-  }
-
-  pipeline(
-    createReadStream(inputPath),
-    createUppercaseStream(),
-    createWriteStream(outputPath),
-    (err) => {
-      if (err) {
-        console.error(err)
-        return
-      }
-      console.log('Finished writing')
-    }
-  )
-}
-
-const fileToUpperUsingPromises = async (inputPath, outputPath) => {
+const fileToUpperUsingSynchronous = (inputPath, outputPath) => {
   try {
-    const data = await readFileAsync(inputPath, 'utf-8')
+    const data = readFileSync(inputPath, 'utf-8')
 
     const uppercased = data.toUpperCase()
 
-    await writeFileAsync(outputPath, uppercased)
+    writeFileSync(outputPath, uppercased)
 
     console.log('Finished writing')
   } catch (err) {
@@ -74,18 +50,42 @@ const fileToUpperUsingCallback = (inputPath, outputPath, callback) => {
   })
 }
 
-const fileToUpperUsingSynchronous = (inputPath, outputPath) => {
+const fileToUpperUsingPromises = async (inputPath, outputPath) => {
   try {
-    const data = readFileSync(inputPath, 'utf-8')
+    const data = await readFileAsync(inputPath, 'utf-8')
 
     const uppercased = data.toUpperCase()
 
-    writeFileSync(outputPath, uppercased)
+    await writeFileAsync(outputPath, uppercased)
 
     console.log('Finished writing')
   } catch (err) {
     console.error(err)
   }
+}
+
+const fileToUpperUsingStream = (inputPath, outputPath) => {
+  const createUppercaseStream = () => {
+    return new Transform({
+      transform(chunk, enc, next) {
+        const uppercased = chunk.toString().toUpperCase()
+        next(null, uppercased)
+      },
+    })
+  }
+
+  pipeline(
+    createReadStream(inputPath),
+    createUppercaseStream(),
+    createWriteStream(outputPath),
+    (err) => {
+      if (err) {
+        console.error(err)
+        return
+      }
+      console.log('Finished writing')
+    }
+  )
 }
 
 const inputFile = __filename

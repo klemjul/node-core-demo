@@ -31,7 +31,7 @@ class ConsoleSink extends Writable {
 
 // Create instances of the streams
 const numberSource = new NumberSource()
-const textSource = Readable.from(['salut', 'comment', 'ca', 'va'])
+const textSource = Readable.from(['we', 'love', 'node'])
 const consoleSink = new ConsoleSink()
 
 // Pipe the readable stream to the writable stream
