@@ -23,8 +23,14 @@ node ./code/3/5-stream-piping.js
 
 node ./code/3/6-path.js
 
+node ./code/3/6-fs-info.js
+
 node ./code/3/6-fs-rw.js
 
 node ./code/3/7-child-process.js
+
+node ./code/3/8-network/tcp-both.js
+
+node ./code/3/8-network/http.js
 
 ```

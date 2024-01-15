@@ -19,7 +19,7 @@
 5. streams
 6. path / file system
 7. child process (optionnal)
-8. network (optionnal) TODO:
+8. network (optionnal)
 
 ## SOURCES
 
