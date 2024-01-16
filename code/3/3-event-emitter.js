@@ -10,8 +10,9 @@ const { EventEmitter } = require('events')
 
 const eventEmitter = new EventEmitter()
 
+// Emit tick event every 1 sec
 let tickCount = 0
-const emitTickEach500ms = setInterval(() => {
+const emitTickEach1s = setInterval(() => {
   eventEmitter.emit('tick', tickCount)
   tickCount++
 }, 1000)
@@ -20,14 +21,16 @@ const printHello = (tickCount) => {
   console.log(`hello ${tickCount}`)
 }
 
+// Remove all listeners after 5 seconds
 setTimeout(() => {
   eventEmitter.removeAllListeners()
   // eventEmitter.removeAllListeners('tick')
   // eventEmitter.removeListener('tick', printHello)
 }, 5000)
 
+// Clear tick interval after 7 second
 setTimeout(() => {
-  clearInterval(emitTickEach500ms)
+  clearInterval(emitTickEach1s)
 }, 7000)
 
 eventEmitter.once('tick', () => {

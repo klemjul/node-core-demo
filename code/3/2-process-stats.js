@@ -5,11 +5,12 @@
  */
 
 'use strict'
+const { uptime, cpuUsage, memoryUsage} = require('process')
 
-const getUptime = () => `${process.uptime()} s`
+const getUptime = () => `${uptime()} s`
 const getCpuUsage = () => {
   const toSecond = (microsecond) => `${microsecond / 1e6} s`
-  const { user, system } = process.cpuUsage()
+  const { user, system } = cpuUsage()
   return {
     cpuUserUsage: toSecond(user),
     cpuSystemUsage: toSecond(system),
@@ -18,7 +19,7 @@ const getCpuUsage = () => {
 const getMemoryUsage = () => {
   const toMB = (bytes) => `${Math.round((bytes / 1024 / 1024) * 100) / 100} MB`
 
-  const { rss, heapTotal, heapUsed } = process.memoryUsage()
+  const { rss, heapTotal, heapUsed } = memoryUsage()
   return {
     ramAlocated: toMB(rss),
     ramHeapAlocated: toMB(heapTotal),
@@ -29,7 +30,6 @@ const getProcessStats = () => {
   return { processUptime: getUptime(), ...getCpuUsage(), ...getMemoryUsage() }
 }
 
-// MAIN
 const stats = [getProcessStats()]
 
 let iterations = 5

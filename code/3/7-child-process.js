@@ -37,9 +37,9 @@ const demoSpawn = (command, args) => {
   })
 }
 
-demoExecSync(process.execPath, ['-p', '"1 + 1"'])
+// demoExecSync(process.execPath, ['-p', '"1 + 1"'])
 // demoExecSync(process.execPath, ['-e', '"throw Error(\'kaboom\')"'])
-// demoSpawn('ls', ['-l', '-a'])
+demoSpawn('ls', ['-l', '-a'])
 // demoSpawnSync(process.execPath, [
 //   '-e',
 //   `
